@@ -1,16 +1,15 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { GlobalStyle } from './StyledComponents/GlobalStyle';
+import { FormWrapper } from './StyledComponents/Wrappers';
+import Form from './components/Form/Form';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        hello
-      </div>
-
+      <GlobalStyle />
+      <FormWrapper>
+        <Form/>
+      </FormWrapper>
     </>
   )
 }
