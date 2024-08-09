@@ -1,36 +1,56 @@
-import { InputCVV, InputCard, InputDay, InputEmail, InputMonth, InputPhone, InputYear } from '../../StyledComponents/Input';
-import { ButtonWrapper, CardWrapper } from '../../StyledComponents/Wrappers';
+import { observer } from 'mobx-react-lite';
+import { useTranslation } from 'react-i18next';
 
-import { ButtonReset, ButtonSave } from './Buttons';
-import { FormBox, DateWrapper, InputFirstName, InputLastName } from './index';
+import { formStore } from '../../store/FormStore';
 
-const Form = () => {
-  return(
+import {
+  FormBox, 
+  DateWrapper,
+  InputField,
+  CardWrapper,
+  ButtonWrapper,
+  ButtonReset,
+  ButtonSave,
+} from './index';
+
+const Form = observer(() => {
+  const { t } = useTranslation();
+
+  const handleResetClick = () => {
+    formStore.reset();
+  };
+
+  return (
     <FormBox>
-      <p>User:</p>
-      <InputFirstName placeholder="first name" />
-      <InputLastName placeholder="last name" />
-      <p>Date:</p>
+      <p>{t('User')}:</p>
+        <InputField type='firstName' placeholder={t('first name')} />
+        <InputField type='lastName' placeholder={t('last name')} />
+      <p>{t('Date')}:</p>
       <DateWrapper>
-        <InputDay placeholder="day" />
-        <InputMonth placeholder="month" />
-        <InputYear placeholder="year" />
+        <InputField type='day' placeholder={t('day')} />
+        <InputField type='month' placeholder={t('month')} />
+        <InputField mask='9999' type='year' placeholder={t('year')} />
       </DateWrapper>
       <CardWrapper>
-      <p>Number Card:</p>
-        <InputCard placeholder="number card" />
-        <InputCVV placeholder="CVV" />
+        <p>{t('Number Card')}:</p>
+        <InputField mask='9999-9999-9999-9999' type='numberCard' placeholder={t('Number Card')} />
+        <InputField mask='999' type='cvv' placeholder={t('CVV')} />
       </CardWrapper>
-      <p>Phone:</p>
-      <InputPhone placeholder="phone" />
-      <p>Email:</p>
-      <InputEmail placeholder="email" />
+      <p>{t('Phone')}:</p>
+      <InputField mask='+9 (999) 999-99-99' type='phone' placeholder={t('Phone')} />
+      <p>{t('Email')}:</p>
+      <InputField type='email' placeholder={t('Email')} />
       <ButtonWrapper>
-        <ButtonSave>Сохранить</ButtonSave>
-        <ButtonReset>Сбросить</ButtonReset>
+        <ButtonSave
+          onClick={() => {}}
+          disabled={!formStore.isFormValid()}
+        >
+          {t('Save')}
+        </ButtonSave>
+        <ButtonReset onClick={handleResetClick}>{t('Reset')}</ButtonReset>
       </ButtonWrapper>
     </FormBox>
-  )
-}
+  );
+});
 
 export default Form;

@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 export const FormWrapper = styled.div`
   display: flex;
+  flex-direction:column;
   justify-content: center;
   align-items: center;
-  background: black;
   height: 100vh;
   width: 100%;
 `
@@ -15,6 +15,7 @@ export const DateWrapper = styled.div`
 `
 
 export const CardWrapper = styled.div`
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -37,4 +38,17 @@ export const ButtonWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
+`
+
+export const ThemeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
+` 
+
+export const InputWrapper = styled.div`
+height: 50px;
+  position: relative;
+  margin-bottom: 20px; /* Добавьте отступ между полями */
 `
